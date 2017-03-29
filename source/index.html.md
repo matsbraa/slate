@@ -47,10 +47,19 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 ## Get All Queries
 
 ```javascript
-const kittn = require('kittn');
+$.ajax({
+  type: 'GET',
+  url: 'https://services.bdo.no/feedback/api/queries',
+  beforeSend: function(request) {
+    request.setRequestHeader("Authorization", "YOUR_API_KEY");
+  },
+  success: function(resp) {
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+  },
+  error: function(err) {
+
+  }
+});
 ```
 
 > The above command returns JSON structured like this:
@@ -58,66 +67,121 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "queryId": 0001,
+    "groupKey": "2",
+    "groupName": "Klimaundersøkelser",
+    "projectId": 1,
+    "projectKey": "7ea0ea43",
+    "projectName": "Get Midt-Norge",
+    "surveyId": 2,
+    "surveyName": "Pulsmåling 1 : Samhandling",
+    "surveyKey": "4baa6310",
+    "queryName": "2016  - Mars",
+    "queryKey": "518dad",
+    "isAnonymous": false,
+    "endDate": "2016-03-23T00:00:00Z",
+    "endDateFormatted": "23.03.16",
+    "previewUrl": "",
+    "reportUrl": "",
+    "anonymousUrl": "",
+    "statusUrl": "",
+    "participantCount": 37,
+    "deliveryCount": 29,
+    "percentageCount": "78,38 %"
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "queryId": 0002,
+    "groupKey": "2",
+    "groupName": "Klimaundersøkelser",
+    "projectId": 2,
+    "projectKey": "7ea0ea43",
+    "projectName": "Get Midt-Norge",
+    "surveyId": 2,
+    "surveyName": "Pulsmåling 1 : Samhandling",
+    "surveyKey": "4baa6310",
+    "queryName": "August-2016",
+    "queryKey": "e8fb7026",
+    "isAnonymous": false,
+    "endDate": "2016-08-30T23:59:00Z",
+    "endDateFormatted": "30.08.16",
+    "previewUrl": "",
+    "reportUrl": "",
+    "anonymousUrl": "",
+    "statusUrl": "",
+    "participantCount": 39,
+    "deliveryCount": 33,
+    "percentageCount": "84,62 %"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all queries.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://services.bdo.no/feedback/api/queries`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+x | false | If set to true, the result will also include x.
+y | true | If set to false, the result will include y.
 
 ## Get a Specific Query
 
 
 ```javascript
-const query = require('query');
+$.ajax({
+  type: 'GET',
+  url: 'https://services.bdo.no/feedback/api/queries/1',
+  beforeSend: function(request) {
+    request.setRequestHeader("Authorization", "YOUR_API_KEY");
+  },
+  success: function(resp) {
 
-let api = query.authorize('meowmeowmeow');
-let max = api.query.get(2);
+  },
+  error: function(err) {
+
+  }
+});
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+  {
+    "queryId": 0002,
+    "groupKey": "2",
+    "groupName": "Klimaundersøkelser",
+    "projectId": 2,
+    "projectKey": "7ea0ea43",
+    "projectName": "Get Midt-Norge",
+    "surveyId": 2,
+    "surveyName": "Pulsmåling 1 : Samhandling",
+    "surveyKey": "4baa6310",
+    "queryName": "August-2016",
+    "queryKey": "e8fb7026",
+    "isAnonymous": false,
+    "endDate": "2016-08-30T23:59:00Z",
+    "endDateFormatted": "30.08.16",
+    "previewUrl": "",
+    "reportUrl": "",
+    "anonymousUrl": "",
+    "statusUrl": "",
+    "participantCount": 39,
+    "deliveryCount": 33,
+    "percentageCount": "84,62 %"
+  }
+]
 ```
 
 This endpoint retrieves a specific kitten.
 
 ### HTTP Request
 
-`GET http://example.com/Queries/<ID>`
+`GET https://services.bdo.no/feedback/api/queries{ID}`
 
 ### URL Parameters
 
